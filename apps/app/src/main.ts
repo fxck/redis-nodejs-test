@@ -14,7 +14,7 @@ client.on('connect', () => console.log('Redis Client Connected!'));
 
 app.get('/api', async (_, res) => {
   await client.connect();
-  await client.set('time', 'value');
+  await client.set('time', new Date().getTime());
   const value = await client.get('time');
   await client.disconnect();
 
