@@ -2,7 +2,9 @@ import { createClient } from 'redis';
 import * as express from 'express';
 
 const app = express();
-const client = createClient();
+const client = createClient({
+  url: process.env.db_connectionString
+});
 
 client.on('error', (err) => console.log('Redis Client Error', err));
 client.on('connect', () => console.log('Redis Client Connected!'));
